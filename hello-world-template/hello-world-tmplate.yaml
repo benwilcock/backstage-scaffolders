@@ -1,0 +1,24 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: hello-world-template
+  title: Hello World
+  description: Says Hello to a specified name.
+spec:
+  owner: user:ben.wilcock
+  type: service
+
+  parameters:
+    - title: Give me your name so I can add it to the hello message.
+      required:
+        - name
+      properties:
+        name:
+          type: string
+
+  steps:
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'Hello, ${{ parameters.name }}!
