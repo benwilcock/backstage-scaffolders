@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{values.name | dump}}
+  description: ${{values.description | dump}}
+  annotations:
+    github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    # backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://example.com
+      title: An example link.
+      icon: github
+      type: source
+  tags:
+    - ${{values.name | dump}}
+spec:
+  type: documentation
+  displayName: ${{values.name | dump}}
+  domain: ${{values.domain | dump}} 
+  lifecycle: experimental
+  owner: ${{values.owner | dump}}

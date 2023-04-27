@@ -1,0 +1,88 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: catalog-template-system
+  title: A Catalog Template For Backstage Systems
+  description: Fooling around with scaffolder.
+  tags:
+    - catalog
+    - documentation
+    - systems
+    - template
+spec:
+  owner: user:ben.wilcock
+  type: documentation
+
+  # Edit the template parameters below to see how they will render in the scaffolder form UI
+  parameters:
+    - title: Describe the system?
+      required:
+        - name
+        - description
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the system.
+        description:
+          title: Description
+          type: string
+          description: The description of the system.
+          ui:widget: textarea
+          ui:options:
+            rows: 1
+          ui:help: 'Give a great description to help search'
+        owner:
+          title: Owner
+          type: string
+          description: The owner of the system.
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+        domain:
+          title: Domain
+          type: string
+          description: The domain of the system.
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Domain
+    
+  steps:
+
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'System: ${{ parameters.name }}'
+        
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'Domain: ${{ parameters.domain }}'
+    
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'Owner: ${{ parameters.owner }}'
+        
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'Description: ${{ parameters.description }}'
+
+    - id: fetch
+      name: System YAML Template
+      action: fetch:template
+      input:
+        url: ./templatefiles
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          domain: ${{ parameters.domain }}
+          # destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          owner: ${{ parameters.owner }}

@@ -9,11 +9,19 @@ spec:
   type: file
 
   parameters:
-    - title: Give me your name so I can add it to the hello message.
+    - title: Parameter One
       required:
-        - name
+          - text-a
       properties:
-        name:
+        text-a:
+          title: Some text A
+          type: string
+    - title: Parameter Two
+      required:
+        - text-b
+      properties:
+        text-b:
+          title: Some text A
           type: string
 
   steps:
