@@ -6,7 +6,7 @@ metadata:
   description: Says Hello to a specified name.
 spec:
   owner: user:ben.wilcock
-  type: service
+  type: file
 
   parameters:
     - title: Give me your name so I can add it to the hello message.
